@@ -1,0 +1,145 @@
+<dContent>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "120dp"
+    ScrollView:
+        MDList:
+        
+            MDTextField:
+                id: item
+                hint_text: "Name of item"
+
+            MDTextField:
+                id: description
+                hint_text: "Description of item"
+
+            MDTextField:
+                id: quantity
+                hint_text: "Quantity of item(1+1=2)"
+
+            MDTextField:
+                id: price
+                hint_text: "Price"
+            
+            MDRaisedButton:
+                id: remove
+                text: 'Remove'
+                md_bg_color: (1,0,0,1)
+                pos_hint: {'right':.5}
+
+
+
+<Iventory_Scr>:
+    #id: Inv_scr
+    name: 'Inventory'
+
+<Sales_Scr>:
+    id: Sales_scr
+    name: 'Sales'
+
+<Inventory1>:
+    id: AAAAAAAA
+    MDList:
+        MDLabel:
+            text: 'Item Name'
+            font_size: 18
+            pos: (10,30)
+            markup: True
+        
+        MDLabel:
+            text: 'Description'
+            font_size: 12
+            pos: (50,0)
+
+Screen:
+    # Boxlayout contains Top layer MDToolbar: and ScreenManager:
+    
+    BoxLayout: 
+        orientation: 'vertical'
+        MDToolbar:
+            id: toolbar
+            pos_hint: {"top": 1}
+            elevation: 5
+            title: "MDNavigationDrdawer"
+            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+            mode: "free-end"
+        ScreenManager:
+            id: screenNames
+            Iventory_Scr:
+                
+                name: 'Inventory'
+                ScrollView:
+                    MDList:
+                        id: Inv_scr
+                       
+               
+
+                        
+
+            Sales_Scr:
+                id: Sales_scr
+            # Screen:
+                
+            #     name: 'Inventory'
+
+            #     MDLabel:
+            #         text: 'Inventory'
+            #         halign: "center"
+
+            # Screen:
+                
+            #     name: 'Sales'
+
+                
+    # MDBottomAppBar:
+    #     MDToolbar:
+    #         title: "Title"
+    #         icon: "plus-box"
+    #         type: "bottom"
+    #         left_action_items: [["menu", lambda x: x]]
+    #         mode: "end"
+            
+    MDNavigationLayout:
+        MDNavigationDrawer:
+            id: nav_drawer
+            ScrollView:
+                MDList:
+                    OneLineIconListItem:
+                        text: "Inventory"
+
+                        on_release:
+                            nav_drawer.set_state("close")
+                            screenNames.current = "Inventory"
+                        IconLeftWidget:
+                            icon: "plus-box"
+                            on_release:
+                                nav_drawer.set_state("close")
+                                screenNames.current = "Inventory"
+                                app.createMe()
+
+
+
+
+                    OneLineIconListItem:
+                        text: "Sales"
+                        on_release:
+                            nav_drawer.set_state("close")
+                            screenNames.current = "Sales"
+                        IconLeftWidget:
+                            icon: "cash-multiple"
+                            on_release:
+                                nav_drawer.set_state("close")
+                                screenNames.current = "Sales"
+                         
+                         
+
+
+              
+
+
+
+                  
+
+
+                #left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
